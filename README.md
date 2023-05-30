@@ -41,11 +41,11 @@ pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-
 
 1. Download the Python script.
 2. Replace the placeholder values in the script with your actual values:
-   - Replace 'path_to_your_service_account_key_file.json' with the path to your service account key file.
-   - Replace 'YOUR_GA_VIEW_ID' with your Google Analytics view ID.
-   - Replace 'YOUR_DATASET_ID' with your BigQuery dataset ID.
-3. Edit the `REPORT_REQUESTS` list to include the Google Analytics reports you want to export, specifying the metrics and dimensions for each report.
-4. Edit the `REPORT_TITLES` list to include the titles of the reports, matching the order of the reports in the `REPORT_REQUESTS` list.
+3. Replace 'temp.json' with the path to your service account key file.
+4. Replace 'VIEW ID HERE' with your Google Analytics view ID.
+5. Replace 'INSERT PROJECT ID' with your Google Cloud project ID.
+6. Replace 'INSERT DATASET ID' with your BigQuery dataset ID.
+7. Edit the report_requests list to include the Google Analytics reports you want to export, specifying the metrics and dimensions for each report.
 
 ## Running the Script
 
@@ -56,8 +56,12 @@ python your_script_name.py
 ```
 
 
-Replace 'your_script_name.py' with the actual name of the Python script.
+Replace 'script.py' with the actual name of the Python script.
 
-The script will create a new table in your BigQuery dataset for each report in the `REPORT_TITLES` list, sanitizing the title to create the table ID. It will then fetch each report from Google Analytics and insert the data into the corresponding BigQuery table.
 
-> :warning: Please note that this script does not include error handling for quota limits or retries for transient errors. Depending on the number of reports and frequency of requests, you may need to add these features to the script to adhere to the Google Analytics API and BigQuery usage limits and best practices.
+SEO:
+Moving Google Analytics to BigQuery.
+Move GA3 to BigQuery.
+Transfer GA3 to BigQuery.
+Migrate Google Analytics Data to BigQuery.
+Migrate Google Analytics Data into to BigQuery.
