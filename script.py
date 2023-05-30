@@ -5,7 +5,7 @@ from googleapiclient.discovery import build
 from google.api_core.exceptions import NotFound
 
 # Set up your service account key file path
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Local path file here'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'temp.json'
 
 # Set up your GA view ID
 VIEW_ID = 'VIEW ID HERE'
