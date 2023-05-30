@@ -1,6 +1,6 @@
 # Google Analytics Data Export to BigQuery
 
-This Python script extracts data from Google Analytics and loads it into Google BigQuery.
+This Python script extracts data from Google Analytics and loads it into Google BigQuery. Big thanks to gpt4 for helping with the documentation <3
 
 ## Table of Contents
 1. [Pre-requisites](#pre-requisites)
