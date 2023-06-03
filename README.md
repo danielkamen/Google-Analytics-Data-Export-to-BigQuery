@@ -59,7 +59,8 @@ python your_script_name.py
 Replace 'script.py' with the actual name of the Python script.
 
 
-SEO:
+SEO so this can find the right people
+
 Moving Google Analytics to BigQuery.
 Move GA3 to BigQuery.
 Transfer GA3 to BigQuery.
