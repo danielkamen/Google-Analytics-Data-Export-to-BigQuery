@@ -13,6 +13,8 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'temp.json'
 
 # Set up your GA view ID
 VIEW_ID = os.getenv('VIEW_ID')
+START_DATE = os.getenv('START_DATE')
+END_DATE = os.getenv('END_DATE')
 
 def initialize_analyticsreporting():
     credentials = service_account.Credentials.from_service_account_file(
@@ -70,7 +72,7 @@ def get_report(analytics, report_request):
 
 def main():
     analytics = initialize_analyticsreporting()
-    report_requests = get_report_requests(VIEW_ID)
+    report_requests = get_report_requests(VIEW_ID, START_DATE, END_DATE)
 
     for request in report_requests:
         table_id = request['table_id']
