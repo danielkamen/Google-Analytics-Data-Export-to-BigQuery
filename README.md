@@ -67,6 +67,10 @@ To run the script, navigate to the directory containing the script in your termi
 python your_script_name.py
 ```
 
+### Formatting
+Note that the date output from the Google Analytics API is a YYYYMMDD string. In google sheets / excel use the formula below to format:
+`=DATE(LEFT(A2,4),MID(A2,5,2),RIGHT(A2,2))`
+
 
 Replace 'script.py' with the actual name of the Python script.
 
