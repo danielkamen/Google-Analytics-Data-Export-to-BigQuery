@@ -1,4 +1,5 @@
 import os
+import csv
 from dotenv import load_dotenv
 from google.cloud import bigquery
 from google.oauth2 import service_account
@@ -86,6 +87,27 @@ def main():
         schema = [dim['name'].replace('ga:', '') for dim in dimensions]
         schema += [metric['expression'].replace('ga:', '') for metric in metrics]
 
+        print(f"Created table {table_id}")
+        with open(f"output/{table_id}.csv", 'w', newline='') as csvfile:
+            fieldnames = schema
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            rows = []
+            for response in report:
+                if 'rows' in response['reports'][0]['data']:
+                    rows += response['reports'][0]['data']['rows']
+            rows_to_insert = []
+            for row in rows:
+                record = {}
+                for i, dim in enumerate(dimensions):
+                    record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
+                for i, metric in enumerate(metrics):
+                    record[metric['expression'].replace('ga:', '')] = row['metrics'][0]['values'][i]
+                rows_to_insert.append(record)
+
+            writer.writerows(rows_to_insert)
+
         # project_id = 'INSERT PROJECT ID'
         # dataset_id = 'INSERT DATASET ID'
 
@@ -101,18 +123,18 @@ def main():
         #     table_counter += 1
 
         # Extract data from report
-        rows = []
-        for response in report:
-            if 'rows' in response['reports'][0]['data']:
-                rows += response['reports'][0]['data']['rows']
-        rows_to_insert = []
-        for row in rows:
-            record = {}
-            for i, dim in enumerate(dimensions):
-                record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
-            for i, metric in enumerate(metrics):
-                record[metric['expression'].replace('ga:', '')] = row['metrics'][0]['values'][i]
-            rows_to_insert.append(record)
+        # rows = []
+        # for response in report:
+        #     if 'rows' in response['reports'][0]['data']:
+        #         rows += response['reports'][0]['data']['rows']
+        # rows_to_insert = []
+        # for row in rows:
+        #     record = {}
+        #     for i, dim in enumerate(dimensions):
+        #         record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
+        #     for i, metric in enumerate(metrics):
+        #         record[metric['expression'].replace('ga:', '')] = row['metrics'][0]['values'][i]
+        #     rows_to_insert.append(record)
 
         # Insert rows into the corresponding table
         # To-do: comment out for csv export
