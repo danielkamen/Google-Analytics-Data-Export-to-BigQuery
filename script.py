@@ -83,8 +83,8 @@ def main():
         # Extract schema from report
         dimensions = report_request['dimensions']
         metrics = report_request['metrics']
-        # schema = [bigquery.SchemaField(dim['name'].replace('ga:', ''), 'STRING') for dim in dimensions]
-        # schema += [bigquery.SchemaField(metric['expression'].replace('ga:', ''), 'STRING') for metric in metrics]
+        schema = [dim['name'].replace('ga:', '') for dim in dimensions]
+        schema += [metric['expression'].replace('ga:', '') for metric in metrics]
 
         # project_id = 'INSERT PROJECT ID'
         # dataset_id = 'INSERT DATASET ID'
@@ -108,7 +108,6 @@ def main():
         rows_to_insert = []
         for row in rows:
             record = {}
-            print(row)
             for i, dim in enumerate(dimensions):
                 record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
             for i, metric in enumerate(metrics):
