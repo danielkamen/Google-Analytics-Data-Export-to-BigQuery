@@ -21,6 +21,17 @@ To use this script, you will need:
 
 Follow these steps to set up your environment:
 
+### Create VIRTUAL ENV
+```shell
+python -m venv env
+```
+
+### Activate virtual environment
+```shell
+source env/bin/activate
+```
+
+
 ### Install the Required Python Libraries
 
 Run the following command in your terminal to install the necessary Python libraries:
