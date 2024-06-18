@@ -1,15 +1,21 @@
 import os
+import csv
+from dotenv import load_dotenv
 from google.cloud import bigquery
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from google.api_core.exceptions import NotFound
 from report_requests import get_report_requests
 
+load_dotenv()
+
 # Set up your service account key file path
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'temp.json'
 
 # Set up your GA view ID
-VIEW_ID = 'VIEW ID HERE'
+VIEW_ID = os.getenv('VIEW_ID')
+START_DATE = os.getenv('START_DATE')
+END_DATE = os.getenv('END_DATE')
 
 def initialize_analyticsreporting():
     credentials = service_account.Credentials.from_service_account_file(
@@ -20,7 +26,7 @@ def initialize_analyticsreporting():
 
 def create_table(project_id, dataset_id, table_id, schema):
     client = bigquery.Client(project=project_id)
-    
+
     table_ref = client.dataset(dataset_id).table(table_id)
     table = bigquery.Table(table_ref, schema=schema)
     table = client.create_table(table)
@@ -67,7 +73,7 @@ def get_report(analytics, report_request):
 
 def main():
     analytics = initialize_analyticsreporting()
-    report_requests = get_report_requests(VIEW_ID)
+    report_requests = get_report_requests(VIEW_ID, START_DATE, END_DATE)
 
     for request in report_requests:
         table_id = request['table_id']
@@ -78,39 +84,60 @@ def main():
         # Extract schema from report
         dimensions = report_request['dimensions']
         metrics = report_request['metrics']
-        schema = [bigquery.SchemaField(dim['name'].replace('ga:', ''), 'STRING') for dim in dimensions]
-        schema += [bigquery.SchemaField(metric['expression'].replace('ga:', ''), 'STRING') for metric in metrics]
+        schema = [dim['name'].replace('ga:', '') for dim in dimensions]
+        schema += [metric['expression'].replace('ga:', '') for metric in metrics]
 
-        project_id = 'INSERT PROJECT ID'
-        dataset_id = 'INSERT DATASET ID'
-        
+        print(f"Created table {table_id}")
+        with open(f"output/{table_id}.csv", 'w', newline='') as csvfile:
+            fieldnames = schema
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            rows = []
+            for response in report:
+                if 'rows' in response['reports'][0]['data']:
+                    rows += response['reports'][0]['data']['rows']
+            rows_to_insert = []
+            for row in rows:
+                record = {}
+                for i, dim in enumerate(dimensions):
+                    record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
+                for i, metric in enumerate(metrics):
+                    record[metric['expression'].replace('ga:', '')] = row['metrics'][0]['values'][i]
+                rows_to_insert.append(record)
+
+            writer.writerows(rows_to_insert)
+
+        # project_id = 'INSERT PROJECT ID'
+        # dataset_id = 'INSERT DATASET ID'
+
         # Create a new table with a counter if the row limit exceeds 1000
-        table_counter = 1
-        while True:
-            new_table_id = f"{table_id}_{table_counter}"
-            try:
-                bigquery.Client(project=project_id).get_table(f"{project_id}.{dataset_id}.{new_table_id}")
-            except NotFound:
-                create_table(project_id, dataset_id, new_table_id, schema)
-                break
-            table_counter += 1
-        
+        # table_counter = 1
+        # while True:
+        #     new_table_id = f"{table_id}_{table_counter}"
+        #     try:
+        #         bigquery.Client(project=project_id).get_table(f"{project_id}.{dataset_id}.{new_table_id}")
+        #     except NotFound:
+        #         create_table(project_id, dataset_id, new_table_id, schema)
+        #         break
+        #     table_counter += 1
+
         # Extract data from report
-        rows = []
-        for response in report:
-            if 'rows' in response['reports'][0]['data']:
-                rows += response['reports'][0]['data']['rows']
-        rows_to_insert = []
-        for row in rows:
-            record = {}
-            for i, dim in enumerate(dimensions):
-                record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
-            for i, metric in enumerate(metrics):
-                record[metric['expression'].replace('ga:', '')] = row['metrics'][0]['values'][i]
-            rows_to_insert.append(record)
+        # rows = []
+        # for response in report:
+        #     if 'rows' in response['reports'][0]['data']:
+        #         rows += response['reports'][0]['data']['rows']
+        # rows_to_insert = []
+        # for row in rows:
+        #     record = {}
+        #     for i, dim in enumerate(dimensions):
+        #         record[dim['name'].replace('ga:', '')] = row['dimensions'][i]
+        #     for i, metric in enumerate(metrics):
+        #         record[metric['expression'].replace('ga:', '')] = row['metrics'][0]['values'][i]
+        #     rows_to_insert.append(record)
 
         # Insert rows into the corresponding table
-        insert_rows(project_id, dataset_id, new_table_id, rows_to_insert)
-
+        # To-do: comment out for csv export
+        # insert_rows(project_id, dataset_id, new_table_id, rows_to_insert)
 if __name__ == '__main__':
     main()

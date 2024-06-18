@@ -1,12 +1,12 @@
 # Define your report requests and table IDs
-def get_report_requests(VIEW_ID):
+def get_report_requests(VIEW_ID, START_DATE, END_DATE):
     return [
         {
             'table_id': 'Audience Demographics Gender',
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -28,7 +28,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -50,7 +50,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -72,7 +72,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -94,7 +94,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -116,14 +116,14 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
                     {'expression': 'ga:newUsers'},
                     {'expression': 'ga:sessions'},
                     {'expression': 'ga:pageviews'},
-                    
+
                 ],
                 'dimensions': [
                     {'name': 'ga:date'},
@@ -138,7 +138,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-09'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -160,7 +160,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -190,7 +190,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:adClicks'},
@@ -219,7 +219,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -246,7 +246,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:adClicks'},
@@ -272,7 +272,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -294,7 +294,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:adClicks'},
@@ -318,7 +318,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -340,7 +340,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -362,7 +362,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -384,7 +384,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:goalConversionRateAll'},
@@ -403,7 +403,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:goalConversionRateAll'},
@@ -422,7 +422,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:socialInteractions'}
@@ -440,7 +440,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:adClicks'},
@@ -465,7 +465,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:goalConversionRateAll'},
@@ -489,7 +489,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -515,7 +515,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -543,7 +543,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:exits'},
@@ -562,7 +562,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:sessions'},
@@ -585,7 +585,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:searchUniques'},
@@ -608,7 +608,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:searchUniques'},
@@ -629,7 +629,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:totalEvents'},
@@ -649,7 +649,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:totalEvents'},
@@ -668,7 +668,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},
@@ -690,7 +690,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:pageviews'},
@@ -716,7 +716,7 @@ def get_report_requests(VIEW_ID):
             'report_request': {
                 'viewId': VIEW_ID,
                 'dateRanges': [
-                    {'startDate': '2013-01-01', 'endDate': '2023-05-30'}
+                    {'startDate': START_DATE, 'endDate': END_DATE}
                 ],
                 'metrics': [
                     {'expression': 'ga:users'},

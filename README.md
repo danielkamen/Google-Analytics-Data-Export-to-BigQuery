@@ -21,6 +21,17 @@ To use this script, you will need:
 
 Follow these steps to set up your environment:
 
+### Create VIRTUAL ENV
+```shell
+python -m venv env
+```
+
+### Activate virtual environment
+```shell
+source env/bin/activate
+```
+
+
 ### Install the Required Python Libraries
 
 Run the following command in your terminal to install the necessary Python libraries:
@@ -42,7 +53,8 @@ pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-
 1. Download the Python script.
 2. Replace the placeholder values in the script with your actual values:
 3. Replace 'temp.json' with the path to your service account key file.
-4. Replace 'VIEW ID HERE' with your Google Analytics view ID.
+4. Add VIEW_ID in .env
+5. Add start date and end date in .env
 5. Replace 'INSERT PROJECT ID' with your Google Cloud project ID.
 6. Replace 'INSERT DATASET ID' with your BigQuery dataset ID.
 7. Edit the report_requests list to include the Google Analytics reports you want to export, specifying the metrics and dimensions for each report.
@@ -54,6 +66,10 @@ To run the script, navigate to the directory containing the script in your termi
 ```shell
 python your_script_name.py
 ```
+
+### Formatting
+Note that the date output from the Google Analytics API is a YYYYMMDD string. In google sheets / excel use the formula below to format:
+`=DATE(LEFT(A2,4),MID(A2,5,2),RIGHT(A2,2))`
 
 
 Replace 'script.py' with the actual name of the Python script.
